@@ -1,0 +1,72 @@
+<div class="container">
+  <h3 mat-dialog-title style="text-align-last: center">{{ data.title }}</h3>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field color="primary" class="mg-l-1">
+        <input
+          matInput
+          #input
+          class="form-control"
+          placeholder="Name"
+          [(ngModel)]="item.name"
+          name="employeeName"
+          required
+        />
+        <mat-error *ngIf="formControl.invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field color="primary" class="mg-l-1">
+        <input
+          matInput
+          #input
+          class="form-control"
+          placeholder="Email"
+          [(ngModel)]="item.email"
+          name="email"
+          required
+        />
+        <mat-error *ngIf="formControl.invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field color="primary" class="mg-l-1">
+        <input
+          matInput
+          #input
+          class="form-control"
+          placeholder="phone"
+          [(ngModel)]="item.phoneNo"
+          name="phoneNo"
+          required
+        />
+        <mat-error *ngIf="formControl.invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions style="justify-content: flex-end">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!formControl.valid"
+        (click)="confirmSave()"
+      >
+        Save
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="onNoClick()"
+        tabindex="-1"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

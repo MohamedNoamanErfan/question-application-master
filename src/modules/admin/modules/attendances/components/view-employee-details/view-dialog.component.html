@@ -1,0 +1,61 @@
+<div class="main-container">
+  <mat-card-header class="text-center mat-card-header">
+    <mat-card-title class="card-title">View Attendances </mat-card-title>
+  </mat-card-header>
+</div>
+
+<mat-card-content>
+  <div class="container mat-elevation-z8">
+    <mat-table
+      #table
+      [dataSource]="dataSource"
+      matSort
+      class="mat-cell mat-table"
+    >
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef class="mat-table-num"
+          >ID</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row" class="mat-table-num">
+          {{ row.time[0]?.id }}</mat-cell
+        >
+      </ng-container>
+      <!-- Date Column -->
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef class="mat-table-num"
+          >Date</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row" class="mat-table-num">
+          {{ row.day | date : "yyyy-MM-dd" }}</mat-cell
+        >
+      </ng-container>
+
+      <!-- SRVDT Column -->
+      <ng-container matColumnDef="first">
+        <mat-header-cell *matHeaderCellDef class="mat-table-num"
+          >first Record Time</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row" class="mat-table-num">
+          {{ row.time[0]?.devdt | date : "h:mm a" }}</mat-cell
+        >
+      </ng-container>
+
+      <ng-container matColumnDef="last">
+        <mat-header-cell *matHeaderCellDef class="mat-table-num"
+          >Last Record Time
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="mat-table-num">
+          {{ row.time[1]?.devuid | date : "h:mm a" }}</mat-cell
+        >
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [style.background-color]="'#90ee9a87'"
+      ></mat-row>
+    </mat-table>
+  </div>
+  <app-loading *ngIf="isLoading"></app-loading>
+</mat-card-content>

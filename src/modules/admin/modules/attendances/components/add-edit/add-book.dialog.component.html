@@ -1,0 +1,39 @@
+<div class="container">
+  <h3 mat-dialog-title style="text-align-last: center">{{ data.title }}</h3>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field floatPlaceholder="never" color="primary" class="mg-l-1">
+        <mat-label>Select the employee</mat-label>
+        <mat-select required name="employee" #input [(ngModel)]="item.employeeId">
+          <mat-option *ngFor="let employee of employeeLookup" [value]="employee.id"
+            >{{ employee.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formControl.invalid">{{
+          getErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions style="justify-content: flex-end">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!formControl.valid"
+        (click)="confirmSave()"
+      >
+        Save
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        (click)="onNoClick()"
+        tabindex="-1"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
